@@ -8,4 +8,4 @@ please do not commit directly to the master branch. Create branches to implement
 1. Install packages from requirements.txt file
 2. to load environment variable, please ask in slack channel or DM Dhruv.
 3. Run point of the application is application.py file.
-
+4. Install MongoDB locally to run the application. 
