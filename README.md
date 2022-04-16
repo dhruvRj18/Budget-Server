@@ -9,3 +9,6 @@ please do not commit directly to the master branch. Create branches to implement
 2. to load environment variable, please ask in slack channel or DM Dhruv.
 3. Run point of the application is application.py file.
 4. Install MongoDB locally to run the application. 
+
+## Accessing Api Docs
+visit localhost:5000/apidocs
