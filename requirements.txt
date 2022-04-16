@@ -1,0 +1,12 @@
+flask
+apispec
+flasgger
+flask-marshmallow
+flask-mongoengine
+Flask
+Flask_Cors
+Flask_PyMongo
+Flask_JWT_Extended
+Flask_Session
+requests
+PyJWT
