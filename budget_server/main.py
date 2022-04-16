@@ -11,6 +11,8 @@ from .constants import (
 LOG_LEVEL,
 MONGO_URI
 )
+from dotenv import load_dotenv
+load_dotenv()
 
 log_level = os.environ.get(LOG_LEVEL,'WARNING')
 log_level = getattr(logging,log_level)
@@ -22,15 +24,15 @@ logging_config = {
 
 logging.basicConfig(**logging_config)
 
-log = logging.getLogger('budget-server')
-log.info('*****Starting Budget Server*****')
+log = logging.getLogger('budget_server')
+log.info('***** Starting Budget Server *****')
 log.debug('Create application')
 
 application = Flask(__name__)
 
 log.debug('environment settings')
 application.config.update({
-    'MONGO_URI':os.environ.get(MONGO_URI)
+    'MONGO_URI':os.environ[MONGO_URI]
 })
 
 log.debug('open cors')
@@ -43,6 +45,8 @@ log.debug('Load Database')
 mongo = PyMongo(application)
 
 log.debug('Load Api')
+
+log.info('***** Server Started *****')
 
 application.config['SWAGGER'] = {
     'title': 'Budget Server APIs',
