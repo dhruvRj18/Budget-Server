@@ -32,6 +32,7 @@ def update_user_by_id(user:Dict,user_updated:Dict)-> Optional[User]:
             email=user_updated['email'],
             image_url=user_updated['image_url'],
             primary_bank=user_updated['primary_bank'],
+            initial_balance = user_updated['initial_balance'],
             password = user_updated['password']
         )
     except Exception as e:
