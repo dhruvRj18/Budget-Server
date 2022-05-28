@@ -3,7 +3,7 @@ from http import HTTPStatus
 
 from flask import Blueprint,abort,jsonify
 
-from budget_server.api import user
+from budget_server.api import user,budget
 
 log = logging.getLogger('route')
 api_blueprint = Blueprint('api',__name__,url_prefix='/api')
@@ -47,5 +47,13 @@ api_blueprint.add_url_rule(
 api_blueprint.add_url_rule(
     rule='/user/<user_id>',
     methods = ['DELETE'],
-    view_func=user.DeleteUser.as_view(('Delete User'))
+    view_func=user.DeleteUser.as_view('Delete User')
+)
+
+#budget entry endpoints
+
+api_blueprint.add_url_rule(
+    rule='/budget',
+    methods=['POST'],
+    view_func= budget.CreateBudgetEntry.as_view('Create Budget Entry')
 )
