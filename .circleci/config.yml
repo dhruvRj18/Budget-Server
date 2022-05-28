@@ -9,13 +9,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build environment
-          command: ./deploy-scripts/build-env.sh
-      - run:
-          name: Shellcheck
-          command: ./deploy-scripts/shellcheck.sh
-          when: always
-      - run:
           name: Activate virtualenv
           command: echo "source env/bin/activate" >> $BASH_ENV
           when: always
