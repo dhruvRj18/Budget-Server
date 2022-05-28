@@ -1,0 +1,18 @@
+
+version: 2.1
+
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Activate virtualenv
+          command: echo "source env/bin/activate" >> $BASH_ENV
+          when: always
+workflows:
+  build:
+    jobs:
+      - build-and-test
