@@ -20,7 +20,6 @@ jobs:
           command: echo "source env/bin/activate" >> $BASH_ENV
           when: always
 workflows:
-  version: 2.1
   build:
     jobs:
       -build-and-test
