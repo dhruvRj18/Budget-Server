@@ -22,3 +22,8 @@ def read_budget_by_id(budget_id:str)->Optional[Budget]:
     except Exception as e:
         return None
 
+
+def delete_budget(budget:Dict)->str:
+    return budget.delete()
+
+
