@@ -25,15 +25,13 @@ def get_user_by_id(user_id:str)-> Optional[User]:
 def update_user_by_id(user:Dict,user_updated:Dict)-> Optional[User]:
     try:
         return user.update(
-            bank_name=user_updated['bank_name'],
-            contact=user_updated['contact'],
-            current_balance=user_updated['current_balance'],
-            display_name=user_updated['display_name'],
+            bank_name=user_updated['bankName'],
+            current_balance=user_updated['currentBalance'],
+            display_name=user_updated['name'],
             email=user_updated['email'],
-            image_url=user_updated['image_url'],
-            primary_bank=user_updated['primary_bank'],
-            initial_balance = user_updated['initial_balance'],
-            password = user_updated['password']
+            profileImageFilePath=user_updated['profileImageFilePath'],
+            primary_bank=user_updated['primaryBank'],
+            initial_balance = user_updated['initialBalance'],
         )
     except Exception as e:
         print(e)
