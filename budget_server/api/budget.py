@@ -8,7 +8,7 @@ from flask import Response, request, abort, jsonify
 from marshmallow import ValidationError
 
 from budget_server.data_manager import create_budget
-from budget_server.data_manager.budget import read_budget_entries, read_budget_by_id
+from budget_server.data_manager.budget import read_budget_entries, read_budget_by_id, delete_budget
 from budget_server.schema import create_budget_schema, budget_return_schema, CreateBudgetSchema
 
 log = logging.getLogger(__name__)
@@ -84,6 +84,36 @@ class GetBudget(BudgetViewBase):
     def get(self,budget_id:str)-> Tuple[Response,HTTPStatus]:
         budget = read_budget_by_id(budget_id)
         return jsonify(budget), HTTPStatus.OK
+
+
+class DeleteBudget(BudgetViewBase):
+    parameters = [
+        {
+            'in': 'path',
+            'name': 'budget_id',
+            'required': True,
+            'description': 'Budget Id of the budget entry',
+
+        },
+    ]
+    responses = {
+        HTTPStatus.OK.value: {
+            'description': 'A Budget entry deleted',
+        },
+        HTTPStatus.UNPROCESSABLE_ENTITY.value: {
+            'description': 'Unprocessable entity',
+        },
+    }
+
+    def delete(self,budget_id) ->  Tuple[Response,HTTPStatus]:
+        try:
+            budget = read_budget_by_id(budget_id)
+            delete_budget(budget)
+            budget_dump = budget_return_schema.dump(budget)
+            return jsonify(budget_dump), HTTPStatus.OK
+        except Exception as e:
+            log.error(e)
+            return None
 
 
 

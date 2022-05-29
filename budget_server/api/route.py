@@ -70,3 +70,9 @@ api_blueprint.add_url_rule(
     methods=['GET'],
     view_func=budget.GetBudget.as_view('Get budget entry by id')
 )
+
+api_blueprint.add_url_rule(
+    rule='/budget/<budget_id>',
+    methods=['DELETE'],
+    view_func=budget.DeleteBudget.as_view('Delete budget entry by id')
+)
