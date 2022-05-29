@@ -8,6 +8,7 @@ from flask import Response, request, abort, jsonify
 from marshmallow import ValidationError
 
 from budget_server.data_manager import create_budget
+from budget_server.data_manager.budget import read_budget_entries
 from budget_server.schema import create_budget_schema, budget_return_schema, CreateBudgetSchema
 
 log = logging.getLogger(__name__)
@@ -49,6 +50,20 @@ class CreateBudgetEntry(BudgetViewBase):
         log.info(f'Added Budget Entry: {budget}')
         budget_dump = budget_return_schema.dump(budget)
         return jsonify(budget_dump),HTTPStatus.OK
+
+class GetBudgets(BudgetViewBase):
+    responses = {
+        HTTPStatus.OK.value:{
+            'description' : 'List of Budget',
+        }
+    }
+
+    def get(self):
+        try:
+            budget = read_budget_entries()
+            return jsonify(budget), HTTPStatus.OK
+        except:
+            return None
 
 
 
