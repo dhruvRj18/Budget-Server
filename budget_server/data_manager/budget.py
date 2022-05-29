@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 from marshmallow import ValidationError
 from mongoengine import NotUniqueError
@@ -11,3 +11,6 @@ def create_budget(budget:Dict)-> Optional[Budget]:
         return Budget(**budget).save()
     except (NotUniqueError,ValidationError):
         return None
+
+def read_budget_entries() -> List[Budget]:
+    return Budget.objects().order_by('-date')

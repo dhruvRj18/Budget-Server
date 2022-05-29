@@ -4,6 +4,7 @@ from http import HTTPStatus
 from flask import Blueprint,abort,jsonify
 
 from budget_server.api import user,budget
+from budget_server.api.budget import GetBudgets
 
 log = logging.getLogger('route')
 api_blueprint = Blueprint('api',__name__,url_prefix='/api')
@@ -56,4 +57,10 @@ api_blueprint.add_url_rule(
     rule='/budget',
     methods=['POST'],
     view_func= budget.CreateBudgetEntry.as_view('Create Budget Entry')
+)
+
+api_blueprint.add_url_rule(
+    rule='/budget',
+    methods=['GET'],
+    view_func= GetBudgets.as_view('Get all Budget Entries')
 )
