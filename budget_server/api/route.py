@@ -64,3 +64,9 @@ api_blueprint.add_url_rule(
     methods=['GET'],
     view_func= GetBudgets.as_view('Get all Budget Entries')
 )
+
+api_blueprint.add_url_rule(
+    rule='/budget/<budget_id>',
+    methods=['GET'],
+    view_func=budget.GetBudget.as_view('Get budget entry by id')
+)
