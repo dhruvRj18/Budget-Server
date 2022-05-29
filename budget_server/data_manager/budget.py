@@ -14,3 +14,11 @@ def create_budget(budget:Dict)-> Optional[Budget]:
 
 def read_budget_entries() -> List[Budget]:
     return Budget.objects().order_by('-date')
+
+
+def read_budget_by_id(budget_id:str)->Optional[Budget]:
+    try:
+        return Budget.objects(id=budget_id)
+    except Exception as e:
+        return None
+
