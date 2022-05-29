@@ -8,7 +8,7 @@ from flask import Response, request, abort, jsonify
 from marshmallow import ValidationError
 
 from budget_server.data_manager import create_budget
-from budget_server.data_manager.budget import read_budget_entries, read_budget_by_id, delete_budget
+from budget_server.data_manager.budget import read_budget_entries, read_budget_by_id, delete_budget, update_budget_by_id
 from budget_server.schema import create_budget_schema, budget_return_schema, CreateBudgetSchema
 
 log = logging.getLogger(__name__)
@@ -114,6 +114,42 @@ class DeleteBudget(BudgetViewBase):
         except Exception as e:
             log.error(e)
             return None
+
+
+class UpdateBudget(BudgetViewBase):
+    parameters = [{
+        'in': 'path',
+        'name': 'budget_id',
+        'required': True,
+        'description': 'Get budget by Id to update'
+    },
+        {
+            'in': 'body',
+            'name': 'body',
+            'required': True,
+            'description': 'Enter budget to update',
+            'schema': CreateBudgetSchema
+        }
+    ]
+    responses = {
+        HTTPStatus.OK.value: {
+            'description': 'A budget from id is updated',
+        }
+    }
+
+    def post(self,budget_id:str):
+        _budget = read_budget_by_id(budget_id)
+        payload = request.json
+        try:
+            create_budget_schema.load(payload)
+        except ValidationError as e:
+            abort(
+                status=HTTPStatus.UNPROCESSABLE_ENTITY,
+                description = 'One or more invalid fields in body'
+            )
+        updated_budget = update_budget_by_id(_budget,payload)
+        budget_dump = budget_return_schema.dump(updated_budget)
+        return jsonify(budget_dump), HTTPStatus.OK
 
 
 

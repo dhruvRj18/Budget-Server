@@ -76,3 +76,9 @@ api_blueprint.add_url_rule(
     methods=['DELETE'],
     view_func=budget.DeleteBudget.as_view('Delete budget entry by id')
 )
+
+api_blueprint.add_url_rule(
+    rule='/budget/<budget_id>',
+    methods = ['POST'],
+    view_func=budget.UpdateBudget.as_view('Update budget entry by id')
+)
