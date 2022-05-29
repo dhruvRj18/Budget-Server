@@ -6,7 +6,7 @@ from .user import (
     delete_user
 )
 from .budget import (
-    create_budget
+    create_budget, read_budget_entries, delete_budget, read_budget_by_id, update_budget_by_id
 )
 
 __all__ = [
@@ -16,4 +16,8 @@ __all__ = [
     update_user_by_id,
     delete_user,
     create_budget,
+    read_budget_entries,
+    delete_budget,
+    read_budget_by_id,
+    update_budget_by_id,
 ]
