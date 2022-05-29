@@ -34,6 +34,7 @@ def update_budget_by_id(budget: Dict, budget_updated: Dict) -> Optional[Budget]:
         return budget.update(
             date=budget_updated['date'],
             bankName = budget_updated['bankName'],
+            purpose = budget_updated['purpose'],
             amount = budget_updated['amount'],
             creditOrDebit = budget_updated['creditOrDebit'],
         )

@@ -9,5 +9,6 @@ class Budget(db.Document):
 
     date = db.DecimalField()
     bankName = db.StringField()
+    purpose = db.StringField()
     amount = db.DecimalField()
-    creditOrDebit = db.BooleanField()
+    creditOrDebit = db.StringField()
