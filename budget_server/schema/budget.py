@@ -4,7 +4,7 @@ from budget_server import ma
 
 
 class CreateBudgetSchema(ma.Schema):
-    date = fields.fields.Decimal(required=True)
+    date = fields.fields.Integer(required=True)
     bankName = fields.fields.String(required=True)
     purpose = fields.fields.String(required=True)
     amount = fields.fields.Decimal(required=True)

@@ -7,7 +7,7 @@ class Budget(db.Document):
         'collection' : 'budget',
     }
 
-    date = db.DecimalField()
+    date = db.IntField()
     bankName = db.StringField()
     purpose = db.StringField()
     amount = db.DecimalField()
