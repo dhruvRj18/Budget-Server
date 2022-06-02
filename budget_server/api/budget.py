@@ -49,7 +49,7 @@ class CreateBudgetEntry(BudgetViewBase):
         budget = create_budget(payload)
         log.info(f'Added Budget Entry: {budget}')
         budget_dump = budget_return_schema.dump(budget)
-        return jsonify(budget_dump),HTTPStatus.OK
+        return jsonify(f'Added Budget Entry: {budget_dump}'),HTTPStatus.OK
 
 class GetBudgets(BudgetViewBase):
     responses = {
@@ -110,7 +110,7 @@ class DeleteBudget(BudgetViewBase):
             budget = read_budget_by_id(budget_id)
             delete_budget(budget)
             budget_dump = budget_return_schema.dump(budget)
-            return jsonify(budget_dump), HTTPStatus.OK
+            return jsonify(f'Deleted Budget Entry: {budget_dump}'), HTTPStatus.OK
         except Exception as e:
             log.error(e)
             return None
