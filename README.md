@@ -12,3 +12,5 @@ please do not commit directly to the master branch. Create branches to implement
 
 ## Accessing Api Docs
 visit localhost:5000/apidocs
+
+<img width="1222" alt="image" src="https://user-images.githubusercontent.com/30573895/188733465-5a817db0-fb97-4696-adcd-72d426a9f471.png">
