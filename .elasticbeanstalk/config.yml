@@ -1,0 +1,8 @@
+branch-defaults:
+  master:
+    environment: dev-server
+global:
+  application_name: budget-server
+  default_platform: 64bit Amazon Linux 2/3.4.16
+  default_region: eu-west-2
+  sc: git
