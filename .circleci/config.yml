@@ -37,6 +37,5 @@ workflows:
             branches:
               only:
                 - master
-                - BS-3-aws-deploy
           requires:
             - build-and-test
