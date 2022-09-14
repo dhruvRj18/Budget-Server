@@ -12,7 +12,30 @@ jobs:
           name: Activate virtualenv
           command: echo "source env/bin/activate" >> $BASH_ENV
           when: always
+  #deployment
+  deploy:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - run: pip3 --version
+      - run:
+          working_directory: /
+          name: installing ebcli
+          command: pip3 install awsebcli --upgrade --user
+      - run: eb --version
+      - run:
+          name: deploying with awsebcli
+          command: eb deploy dev-server
 workflows:
   build:
     jobs:
       - build-and-test
+      - deploy:
+          context: aws-creds
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - build-and-test

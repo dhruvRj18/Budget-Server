@@ -11,8 +11,7 @@ from .constants import (
 LOG_LEVEL,
 MONGO_URI
 )
-from dotenv import load_dotenv
-load_dotenv()
+
 
 log_level = os.environ.get(LOG_LEVEL,'WARNING')
 log_level = getattr(logging,log_level)
