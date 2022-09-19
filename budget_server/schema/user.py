@@ -3,6 +3,7 @@ from budget_server import ma
 
 class UserCreateSchema(ma.Schema):
     email = fields.fields.String(required=True)
+    password = fields.fields.String(required=True)
     name = fields.fields.String()
     profileImageFilePath = fields.fields.String()
     bankName = fields.fields.String()
@@ -15,6 +16,7 @@ class UserReturnSchema(ma.Schema):
         fields = [
             '_id',
             'email',
+            'password'
             'name',
             'profileImageFilePath',
             'bankName',
