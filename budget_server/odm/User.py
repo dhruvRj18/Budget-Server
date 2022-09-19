@@ -7,6 +7,7 @@ class User(db.Document):
     }
 
     email = db.StringField()
+    password = db.StringField()
     name = db.StringField()
     profileImageFilePath = db.StringField()
     bankName = db.StringField()

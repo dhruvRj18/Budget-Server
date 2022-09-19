@@ -1,3 +1,4 @@
+import hashlib
 import logging
 from copy import copy
 from http import HTTPStatus
@@ -38,6 +39,8 @@ class UserCreate(UserViewBase):
 
     def post(self) -> Tuple [Response,HTTPStatus]:
         payload = copy(request.json)
+        pasString = payload['password']
+        payload["password"] = hashlib.new("sha1",pasString.encode()).hexdigest()
         try:
             user_create_schema.load(payload)
         except ValidationError as e:
